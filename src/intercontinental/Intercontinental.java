@@ -21,7 +21,7 @@ public class Intercontinental {
         // TODO code application logic here
         
         Logger.getLogger(Intercontinental.class.getName()).log(Level.INFO,"Anagrams Group="+new Anagrams("This is a pig to gip repository also called ot").outputPairs());
-        int[] x ={1,2,3,4,5,6};
+        Integer[] x ={1,2,3,4,5,6};
         Logger.getLogger(Intercontinental.class.getName()).log(Level.INFO,"Pairs Group="+new PairsOfIntegers(x).numberGroup);
        
     }

@@ -6,14 +6,10 @@
 package intercontinental;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -24,44 +20,37 @@ public class PairsOfIntegers {
     List<String> numberGroup = new ArrayList<String>();
     HashSet<Integer> hs = new HashSet<Integer>();
     HashSet<Integer> Pairs = new HashSet<Integer>();
+    List<Integer> numberArray = new ArrayList<Integer>();
     
-    public PairsOfIntegers(int[] input){
+    public PairsOfIntegers(Integer[] input){
        PairsOfNumbers(input, 7);
         }
     
-  public List<String> PairsOfNumbers(int[] input, int sum){
-    Map<Integer, Integer> numberMap = new HashMap<>();   
-
-    for(int i=0; i<input.length; i++){
-        int value = input[i];
-        int complement = sum - input[i];
-
-        if(numberMap.containsKey(complement)){                
-            int index = numberMap.get(complement) - 1;
-           
+  public List<String> PairsOfNumbers(Integer[] input, int sum){
+    
+    numberArray = Arrays.asList(input);
+    
+    Iterator<Integer> it = numberArray.iterator();
+             
+        while(it.hasNext()){   
+        int value = it.next();
+        int complement = sum - value;
+              
+        if(numberArray.contains(complement)){                
+            
+            hs.clear();
             hs.add(value);
             hs.add(complement);
             boolean x = Pairs.add(value);
             boolean y = Pairs.add(complement);
            
-            if(x==true && y==true && hs.size()<3){
-                numberGroup.add(hs.toString());
-                hs.clear();
-            }
-            if(index == 0){
-                numberMap.remove(complement);
-            }else{
-                numberMap.put(complement, index);
-               
-            }
-        }else{
-            if(numberMap.containsKey(value)){         
-                numberMap.put(value, numberMap.get(value) + 1);             
-            }else{
-                numberMap.put(value, 1);
-            }
-        }
+            if(x==true && y==true ){
+                numberGroup.add(hs.toString());             
+                hs.clear();            
+            }        
+        }      
     }
+    Pairs.clear();
     return numberGroup;
 }
 }
